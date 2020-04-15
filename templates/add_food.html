@@ -4,13 +4,13 @@
     <div class="row">
         <div>
 
-          <div class="panel panel-primary">
+          <div class="card" style="width: 100%;">
 
-            <div class="panel-heading">
-              <h3 class="panel-title">Foods</h3>
+            <div class="card-header mt-4 mb-4">
+              <h3 class="card-title">Add your favourite foods</h3>
             </div>
 
-            <div class="panel-body">
+            <div class="card-body">
 
               <form method="POST" action="{{ url_for('food') }}">
                 <div class="form-group">
@@ -29,18 +29,21 @@
                   <label for="fat">Fat</label>
                   <input type="number" class="form-control" id="fat" name="fat" placeholder="Fat">
                 </div>
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-outline-success">Add</button>
               </form>
 
-              <div class="page-header"></div>
-
+              <div class="pb-2 mt-4 mb-2 border-bottom"></div>
+              <!-- create a for loop to instantiate the data -->
+            {% for food in results %}
               <ul class="nav nav-pills" role="tablist">
-                <li class="active"><a>Pizza</a></li>
-                <li><a>Protein: <span class="badge">100</span></a></li>
-                <li><a>Carbohydrates: <span class="badge">200</span></a></li>
-                <li><a>Fat: <span class="badge">50</span></a></li>
-                <li><a>Calories: <span class="badge">1650</span></a></li>
+                <li class="nav-item"><a class="nav-link active">{{ food.name }}</a></li>
+                <li class="nav-item"><a class="nav-link">Protein: <span class="badge badge-primary">{{food.protein}}</span></a></li>
+                <li class="nav-item"><a class="nav-link">Carbohydrates: <span class="badge badge-warning">{{food.carbohydrates}}</span></a></li>
+                <li class="nav-item"><a class="nav-link">Fat: <span class="badge badge-danger">{{food.fat}}</span></a></li>
+                <li class="nav-item"><a class="nav-link">Calories: <span class="badge badge-info">{{food.calories}}</span></a></li>
               </ul>
+              <div class="pb-2 mt-4 mb-2 border-bottom"></div>
+            {% endfor %}
             </div>
 
           </div>
