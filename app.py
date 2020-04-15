@@ -1,6 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
+import psycopg2
 
 app = Flask(__name__)
+
+
 
 @app.route('/')
 def index():
