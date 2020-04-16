@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container theme-showcase col-sm-6 col-sm-offset-3" role="main">
+<div class="container-fluid  theme-showcase col-md-6" role="main">
     <div class="row">
-        <div>
 
           <div class="card" style="width: 100%;">
 
@@ -12,7 +11,7 @@
 
             <div class="card-body">
 
-              <form method="POST" action="{{ url_for('food') }}">
+              <form style="width: 75%; margin: 0 auto;" method="POST" action="{{ url_for('food') }}">
                 <div class="form-group">
                   <label for="food-name">Food Name</label>
                   <input type="text" class="form-control" id="food-name" name="food-name" placeholder="Food Name">
@@ -35,7 +34,7 @@
               <div class="pb-2 mt-4 mb-2 border-bottom"></div>
               <!-- create a for loop to instantiate the data -->
             {% for food in results %}
-              <ul class="nav nav-pills" role="tablist">
+              <ul style="width: 100%; margin-left: 2rem;" class="nav nav-pills" role="tablist">
                 <li class="nav-item"><a class="nav-link active">{{ food.name }}</a></li>
                 <li class="nav-item"><a class="nav-link">Protein: <span class="badge badge-primary">{{food.protein}}</span></a></li>
                 <li class="nav-item"><a class="nav-link">Carbohydrates: <span class="badge badge-warning">{{food.carbohydrates}}</span></a></li>

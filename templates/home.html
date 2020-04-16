@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-  <div class="container col-sm-6 col-sm-offset-3" role="main"">
+  <div class="container-fluid col-md-6" role="main">
     <div class="row">
-      <form method="POST" action="/">
-        <div class="form-group">
-          <input type="date" class="form-control" id="new-day">
+      <div class="input-group mb-3 pb-2 mt-4 mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Search foods</span>
         </div>
-        <button class="btn btn-primary">Add</button>
-      </form>
-      <div class="card border-info mb-3" style="max-width: 30rem;">
+        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+      <button type="button" class="btn btn-primary">Search Foods</button>
+      </div>
+      <div class="card border-info mt-4 mb-3" style="width: 100%;">
         <div class="card-header">Header</div>
         <div class="card-body text-info">
           <h5 class="card-title">Info card title</h5>
