@@ -1,27 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-  <div class="container-fluid col-md-6" role="main">
-    <div class="row">
-      <div class="input-group mb-3 pb-2 mt-4 mb-2">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-default">Search foods</span>
+<div class="container-fluid col-md-6" role="main">
+  <div class="row">
+      <form style="width: 75%; margin: 0 auto;" class=" mt-4 mb-2" method="POST" action="/">
+        <div class="form-group">
+          <input class="form-control form-control-lg" type="date" name="date" placeholder="Search foods by date">
         </div>
-        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-      <button type="button" class="btn btn-primary">Search Foods</button>
-      </div>
-      <div class="card border-info mt-4 mb-3" style="width: 100%;">
-        <div class="card-header">Header</div>
+        <button type="submit" class="btn btn-outline-success btn-lg">Search Foods</button>
+      </form>
+      {% for r in results %}
+    <div class="card border-info mt-4 mb-3" style="width: 100%; text-align: center;">
         <div class="card-body text-info">
-          <h5 class="card-title">Info card title</h5>
+          <h5 class="card-title mt-2 mb-4">{{ r.entry_date }}</h5>
           <ul class="nav nav-pills" role="tablist">
-            <li><a>Protein: <span class="badge">100</span></a></li>
-            <li><a>Carbohydates: <span class="badge">200</span></a></li>
-            <li><a>Fat: <span class="badge">50</span></a></li>
-            <li><a>Calories: <span class="badge">1650</span></a></li>
-            <li><a href="#" type="button" class="btn btn-link">View Detail</a></li>
+            <li class="nav-item"><a class="nav-link active">Protein: <span class="badge">100</span></a></li>
+            <li class="nav-item"><a class="nav-link">Carbohydates: <span class="badge badge-warning">200</span></a></li>
+            <li class="nav-item" ><a class="nav-link">Fat: <span class="badge badge-danger">50</span></a></li>
+            <li class="nav-item"><a class="nav-link">Calories: <span class="badge badge-info">1650</span></a></li>
+            <li class="nav-item"><a href="#" type="button" class="btn btn-link">View Detail</a></li>
           </ul>
         </div>
       </div>
-    </div>
+      {% endfor %}
+    
   </div>
+</div>
 {% endblock %}
