@@ -1,4 +1,56 @@
 {% extends "base.html" %}
 {% block content %}
-  
+  <div class="container-fluid theme-showcase col-md-6" role="main">
+
+      <div class="row">
+        <div>
+          <div class="card mt-5">
+            <div class="card-header">
+              <h3 class="card-title">January 28, 2017</h3>
+            </div>
+
+            <div class="card-body">
+
+
+              <form method="POST" action="/">
+                <div class="form-group">
+                  <select class="form-control">
+                    <option>1</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add</button>
+
+              </form>
+
+              <div class="pb-2 mt-4 mb-2 border-bottom"></div>
+
+              <ul class="nav nav-pills" role="tablist">
+                <li class="nav-item"><a class="nav-link active">Total</a></li>
+                <li class="nav-item"><a class="nav-link">Protein: <span class="badge">100</span></a></li>
+                <li class="nav-item" ><a class="nav-link">Carbohydates: <span class="badge">200</span></a></li>
+                <li class="nav-item"><a class="nav-link">Fat: <span class="badge">50</span></a></li>
+                <li class="nav-item"><a class="nav-link">Calories: <span class="badge">1650</span></a></li>
+              </ul>
+
+            </div>
+
+            <div class="pb-2 mt-4 mb-2 border-bottom"></div>
+
+            <div class="card-body">
+              <ul class="nav nav-pills" role="tablist">
+                <li class="nav-item"><a class="nav-link active">Pizza</a></li>
+                <li class="nav-item"><a class="nav-link">Protein: <span class="badge">100</span></a></li>
+                <li class="nav-item"><a class="nav-link">Carbohydates: <span class="badge">200</span></a></li>
+                <li class="nav-item"><a class="nav-link">Fat: <span class="badge">50</span></a></li>
+                <li class="nav-item"><a class="nav-link">Calories: <span class="badge">1650</span></a></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
 {% endblock %}
