@@ -39,6 +39,7 @@ def index():
 
         # Query date from database for use in the index page
         cur = db.execute('select entry_date from log_date order by entry_date desc')
+        # Get all dates from database
         results = cur.fetchall()
         
 
@@ -52,9 +53,28 @@ def index():
         
     return render_template('home.html', results=date_results)
 
-@app.route('/view')
-def view():
-    return render_template('day.html')
+@app.route('/view/<date>', methods=['GET', 'POST'])
+def view(date):
+    db = get_db()
+    # query the datebase for log_date table to recive entry_date
+    cur = db.execute('select id, entry_date from log_date where entry_date = ?', [date])
+    # GET the result
+    date_result = cur.fetchone()
+
+    if request.method == 'POST':
+    # POST food id and log_date_id into food_date table
+        db.execute('insert into food_date (food_id, log_date_id) values (?, ?)', \
+            [request.form['food-select'], date_result['id']])
+        db.commit()
+    # format the date from 20200419 to April 19, 2020
+    d = datetime.strptime(str(date_result['entry_date']), '%Y%m%d')
+    result_date = datetime.strftime(d, '%B %d, %Y')
+    # query database for foods in database
+    food_cur = db.execute('select id, name from food')
+    # GET all foods from datebase
+    food_results = food_cur.fetchall()
+
+    return render_template('day.html', date=result_date, food_results=food_results)
 
 @app.route('/food', methods=['GET', 'POST'])
 def food():
@@ -80,6 +100,7 @@ def food():
         # create a cursor to query the database to enbale displying of data in
         # html template
     cur = db.execute('select name, protein, carbohydrates, fat, calories from food')
+    # fetch all results from database to be able to disply them in template
     results = cur.fetchall()
     return render_template('add_food.html', results=results)
 
