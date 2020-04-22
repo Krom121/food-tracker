@@ -30,26 +30,26 @@
 
               <ul class="nav nav-pills" role="tablist">
                 <li class="nav-item"><a class="nav-link active">Total</a></li>
-                <li class="nav-item"><a class="nav-link">Protein: <span class="badge">100</span></a></li>
-                <li class="nav-item" ><a class="nav-link">Carbohydates: <span class="badge">200</span></a></li>
-                <li class="nav-item"><a class="nav-link">Fat: <span class="badge">50</span></a></li>
-                <li class="nav-item"><a class="nav-link">Calories: <span class="badge">1650</span></a></li>
+                <li class="nav-item"><a class="nav-link">Protein: <span class="badge">{{ totals.protein }}</span></a></li>
+                <li class="nav-item" ><a class="nav-link">Carbohydates: <span class="badge">{{ totals.carbohydates }}</span></a></li>
+                <li class="nav-item"><a class="nav-link">Fat: <span class="badge">{{ totals.fat }}</span></a></li>
+                <li class="nav-item"><a class="nav-link">Calories: <span class="badge">{{ totals.calories }}</span></a></li>
               </ul>
 
             </div>
 
             <div class="pb-2 mt-4 mb-2 border-bottom"></div>
-
+            {% for food in log_results %}
             <div class="card-body">
               <ul class="nav nav-pills" role="tablist">
-                <li class="nav-item"><a class="nav-link active">Pizza</a></li>
-                <li class="nav-item"><a class="nav-link">Protein: <span class="badge">100</span></a></li>
-                <li class="nav-item"><a class="nav-link">Carbohydates: <span class="badge">200</span></a></li>
-                <li class="nav-item"><a class="nav-link">Fat: <span class="badge">50</span></a></li>
-                <li class="nav-item"><a class="nav-link">Calories: <span class="badge">1650</span></a></li>
+                <li class="nav-item"><a class="nav-link active">{{ food.name }}</a></li>
+                <li class="nav-item"><a class="nav-link">Protein: <span class="badge">{{ food.protein }}</span></a></li>
+                <li class="nav-item"><a class="nav-link">Carbohydates: <span class="badge">{{ food.carbohydrates }}</span></a></li>
+                <li class="nav-item"><a class="nav-link">Fat: <span class="badge">{{ food.fat }}</span></a></li>
+                <li class="nav-item"><a class="nav-link">Calories: <span class="badge">{{ food.calories }}</span></a></li>
               </ul>
             </div>
-
+            {% endfor %}
           </div>
         </div>
       </div>

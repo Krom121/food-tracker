@@ -73,8 +73,27 @@ def view(date):
     food_cur = db.execute('select id, name from food')
     # GET all foods from datebase
     food_results = food_cur.fetchall()
+    # Join log food date table with log date table then to join to the food table
+    log_cur = db.execute('select food.name, food.protein, food.carbohydrates, food.fat, food.calories from log_date join food_date on food_date.log_date_id = log_date.id join food on food.id = food_date.food_id where log_date.entry_date = ?', [date])
+    # Get all joined table data
+    log_results = log_cur.fetchall()
 
-    return render_template('day.html', date=result_date, food_results=food_results)
+    # Add food totals together
+    totals = {}
+    # start at 0
+    totals['protein'] = 0
+    totals['carbohydrates'] = 0
+    totals['fat'] = 0
+    totals['calories'] = 0
+
+    for food in log_results:
+        totals['protein'] += food['protein']
+        totals['carbohydrates'] += food['carbohydrates']
+        totals['fat'] += food['fat']
+        totals['calories'] += food['calories']
+
+
+    return render_template('day.html', date=result_date, food_results=food_results, log_results=log_results, totals=totals)
 
 @app.route('/food', methods=['GET', 'POST'])
 def food():
