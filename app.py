@@ -38,7 +38,7 @@ def index():
         db.commit()
 
     # Query date from database for use in the index page
-    cur = db.execute('select entry_date from log_date order by entry_date desc')
+    cur = db.execute('select log_date.entry_date, sum(food.protein) as protein, sum(food.carbohydrates) as carbohydrates, sum(food.fat) as fat, sum(food.calories) as calories from log_date join food_date on food_date.log_date_id = log_date.id join food on food.id = food_date.food_id group by log_date.id order by log_date.entry_date desc')
     # Get all dates from database
     results = cur.fetchall()
 
@@ -47,6 +47,10 @@ def index():
     for i in results:
         single_date = {}
         single_date['entry_date'] = i['entry_date']
+        single_date['protein'] = i['protein']
+        single_date['carbohydrates'] = i['carbohydrates']
+        single_date['fat'] = i['fat']
+        single_date['calories'] = i['calories']
         d = datetime.strptime(str(i['entry_date']), '%Y%m%d')
         single_date['date_result'] = datetime.strftime(d, '%B %d, %Y')
 
@@ -61,7 +65,7 @@ def view(date):
     cur = db.execute('select id, entry_date from log_date where entry_date = ?', [date])
     # GET the result
     date_result = cur.fetchone()
-
+    
     if request.method == 'POST':
     # POST food id and log_date_id into food_date table
         db.execute('insert into food_date (food_id, log_date_id) values (?, ?)', [request.form['food-select'], date_result['id']])
