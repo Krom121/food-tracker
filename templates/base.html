@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     <!-- Custom css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    {% if title %}
+    <title>Calorie Tracker-{{ title }}</title>
+    {% else %}
     <title>Calorie Tracker</title>
+    {% endif %}
 </head>
 <body>
     <header>

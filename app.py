@@ -51,7 +51,7 @@ def index():
 
             date_results.append(single_date)
         
-    return render_template('home.html', results=date_results)
+    return render_template('home.html', title='Welcome', results=date_results)
 
 @app.route('/view/<date>', methods=['GET', 'POST'])
 def view(date):
@@ -93,7 +93,7 @@ def view(date):
         totals['calories'] += food['calories']
 
 
-    return render_template('day.html', date=result_date, food_results=food_results, log_results=log_results, totals=totals)
+    return render_template('day.html', title='Food By Date', date=result_date, food_results=food_results, log_results=log_results, totals=totals)
 
 @app.route('/food', methods=['GET', 'POST'])
 def food():
@@ -116,12 +116,12 @@ def food():
         return '<h1>Name: {} Protein: {} Carbs: {} Fat: {}</h1>'.format(request.form['food-name'], request.form['protein'], \
         request.form['carbohydrates'], request.form['fat'])
         '''
-        # create a cursor to query the database to enbale displying of data in
+        # create a cursor to query the database to enbale displaying of data in
         # html template
     cur = db.execute('select name, protein, carbohydrates, fat, calories from food')
     # fetch all results from database to be able to disply them in template
     results = cur.fetchall()
-    return render_template('add_food.html', results=results)
+    return render_template('add_food.html', title='Add Your Foods', results=results)
 
 
 
